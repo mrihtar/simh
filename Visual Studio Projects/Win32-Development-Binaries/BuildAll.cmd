@@ -105,7 +105,7 @@ git remote | findstr origin > NUL
 if ERRORLEVEL 1 echo **** ERROR **** missing 'origin' remote in this repo & popd & goto :EOF
 git checkout --quiet master
 git fetch origin master
-git log -1 --pretty="SIM_GIT_COMMIT_ID %%H%%nSIM_GIT_COMMIT_TIME %%aI" >.git-commit-id
+git log -1 --pretty="SIM_GIT_COMMIT_ID %%h%%nSIM_GIT_COMMIT_TIME %%aI" >.git-commit-id
 popd
 pushd ..
 for /F "usebackq tokens=2" %%i in (`findstr /C:SIM_GIT_COMMIT_ID ..\.git-commit-id`) do set GIT_COMMIT_ID=%%i

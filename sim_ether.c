@@ -2666,11 +2666,13 @@ if (!version[0]) {
   if (memcmp(pcap_lib_version(), "Npcap", 5) == 0) {
     char maj_min[CBUFSIZE];
     char *c = version;
+    double npcap_ver = 0.0;
 
     while (*c && !isdigit (*c))
       ++c;
     get_glyph (c, maj_min, ',');
-    if (strcmp ("0.9990", maj_min) < 0)
+    npcap_ver = atof(maj_min);
+    if (npcap_ver < 0.9994)
       snprintf(version, sizeof(version), "Unsupported - %s", pcap_lib_version());
     }
   }

@@ -295,7 +295,7 @@ ifeq (${WIN32},)  #*nix Environments (&& cygwin)
         GIT_EXTRA_FILES=+uncommitted-changes
       endif
       isodate=$(shell git log -1 --pretty="%ai"|sed -e 's/ /T/'|sed -e 's/ //')
-      $(shell git log -1 --pretty="SIM_GIT_COMMIT_ID %H$(GIT_EXTRA_FILES)%nSIM_GIT_COMMIT_TIME $(isodate)" >.git-commit-id)
+      $(shell git log -1 --pretty="SIM_GIT_COMMIT_ID %h%nSIM_GIT_COMMIT_TIME $(isodate)" >.git-commit-id)
     endif
   endif
   LTO_EXCLUDE_VERSIONS = 
@@ -976,6 +976,7 @@ ifeq (${WIN32},)  #*nix Environments (&& cygwin)
   endif
 else
   #Win32 Environments (via MinGW32)
+  SHELL := cmd
   GCC := gcc
   GCC_Path := $(abspath $(dir $(word 1,$(wildcard $(addsuffix /${GCC}.exe,$(subst ;, ,${PATH}))))))
   ifeq (rename-build-support,$(shell if exist ..\windows-build-windows-build echo rename-build-support))
